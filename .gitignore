@@ -290,6 +290,7 @@ paket-files/
 
 # FAKE - F# Make
 .fake/
+.ionide/
 
 # JetBrains Rider
 .idea/
