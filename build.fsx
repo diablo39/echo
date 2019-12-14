@@ -1,7 +1,7 @@
-#r "paket: nuget Fake.DotNet.Cli"
-#r "paket: nuget Fake.IO.FileSystem"
-#r "paket: nuget Fake.Core.Target"
-
+#r "paket:
+nuget Fake.DotNet.Cli
+nuget Fake.IO.FileSystem
+nuget Fake.Core.Target //"
 #load ".fake/build.fsx/intellisense.fsx"
 open Fake.Core
 open Fake.DotNet
@@ -24,7 +24,6 @@ Target.create "Build" (fun _ ->
 )
 
 Target.create "All" ignore
-
 
 "Clean"
   ==> "Build"
