@@ -36,6 +36,7 @@ Target.create "Build" (fun _ ->
     |> Seq.iter (DotNet.build (fun p -> 
     { p with   
         NoRestore = true
+        Configuration = DotNet.BuildConfiguration.Debug
     }))
 )
 

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<assemblies timestamp="12/18/2019 15:31:43">
+  <assembly name="C:\Users\Roman\source\repos\Roman.Echo\tests\Roman.Echo.IntegrationTests\bin\Debug\netcoreapp3.0\Roman.Echo.IntegrationTests.dll" run-date="2019-12-18" run-time="15:31:43" total="1" passed="1" failed="0" skipped="0" time="0.005" errors="0">
+    <errors />
+    <collection total="1" passed="1" failed="0" skipped="0" name="Test collection for Roman.Echo.IntegrationTests.UnitTest1" time="0.005">
+      <test name="Roman.Echo.IntegrationTests.UnitTest1.Test1" type="Roman.Echo.IntegrationTests.UnitTest1" method="Test1" time="0.0045100" result="Pass">
+        <traits />
+      </test>
+    </collection>
+  </assembly>
+</assemblies>
