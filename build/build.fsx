@@ -45,7 +45,7 @@ Target.create "Run tests" (fun _ ->
    { p with   
        NoRestore = true
        NoBuild = true 
-       Logger = Some "console;verbosity=normal"
+       Logger = Some "xunit;LogFilePath=test_result.xml"
    }))
 )
 
@@ -53,7 +53,6 @@ Target.create "Run tests" (fun _ ->
 //      !! ("tests/**/bin/**/*.UnitTests.dll")
 //      |> Fake.DotNet.Testing.XUnit2.run (fun p -> 
 //      { p with 
-//         HtmlOutputPath = Some ("xunit.html")
 //         NUnitXmlOutputPath = Some ("xml.xml")
 //      })
 // )
