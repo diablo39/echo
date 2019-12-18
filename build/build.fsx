@@ -1,8 +1,3 @@
-#r "paket:nuget Fake.DotNet.Cli"
-#r "paket:nuget Fake.IO.FileSystem"
-#r "paket:nuget Fake.DotNet.Testing.XUnit2"
-#r "paket:nuget Fake.Core.Target"
-
 #load ".fake/build.fsx/intellisense.fsx"
 
 // Clean ->  Restore all -> Build app -> build & run unit tests -> build & run integration tests -> publish -> docker build -> docker publish
@@ -14,6 +9,9 @@ open Fake.IO.Globbing.Operators
 open Fake.Core.TargetOperators
 open Fake.DotNet.Testing.XUnit2
 
+
+Shell.cd("..")
+
 Target.initEnvironment ()
 
 Target.create "Clean" (fun _ ->
@@ -21,6 +19,7 @@ Target.create "Clean" (fun _ ->
     ++ "src/**/obj"
     |> Shell.cleanDirs 
 )
+
 Target.create "Restore" (fun _ ->
     !! "*.sln"
     |> Seq.iter (DotNet.restore (fun args -> 
@@ -34,16 +33,30 @@ Target.create "Restore" (fun _ ->
 Target.create "Build" (fun _ ->
     !! "src/**/*.*proj"
     ++ "tests/**/*.*proj"
-    |> Seq.iter (DotNet.build id)
+    |> Seq.iter (DotNet.build (fun p -> 
+    { p with   
+        NoRestore = true
+    }))
 )
 
 Target.create "Run tests" (fun _ ->
-
-    !! ("src/**/*.*proj" @@ "xUnit.Test.*.dll")
-    |> xUnit2 (fun p -> { p with HtmlOutputPath = Some (testDir @@ "xunit.html") })
-
-    
+   !! "tests/**/*.*proj"
+   |> Seq.iter (DotNet.test (fun p -> 
+   { p with   
+       NoRestore = true
+       NoBuild = true 
+       Logger = Some "console;verbosity=normal"
+   }))
 )
+
+// Target.create "Run tests" (fun _ ->
+//      !! ("tests/**/bin/**/*.UnitTests.dll")
+//      |> Fake.DotNet.Testing.XUnit2.run (fun p -> 
+//      { p with 
+//         HtmlOutputPath = Some ("xunit.html")
+//         NUnitXmlOutputPath = Some ("xml.xml")
+//      })
+// )
 
 
 Target.create "All" ignore
@@ -52,7 +65,7 @@ Target.create "All" ignore
 "Clean"
     ==> "Restore"
     ==> "Build" 
-    ==> "Run integration test"
+    ==> "Run tests"
 //     ==> "UnitTests" <=> "IntegrationsTests"
 //         ==> "Docker build"
 //         ==> "Docker publish"

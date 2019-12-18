@@ -291,6 +291,7 @@ paket-files/
 # FAKE - F# Make
 .fake/
 .ionide/
+.paket/
 
 # JetBrains Rider
 .idea/

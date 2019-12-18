@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{EDC96435-6A76-4BFF-AB56-49293BFD2618}"
-	ProjectSection(SolutionItems) = preProject
-		build.fsx = build.fsx
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roman.Echo", "src\Roman.Echo\Roman.Echo.csproj", "{8D2BB4E7-7DA7-4603-A089-0407CD425F3D}"
 EndProject
