@@ -1,6 +1,6 @@
 var target = Argument("target", "All");
 var isTeamCityBuild = TeamCity.IsRunningOnTeamCity;
-var teamCity = TeamCity();
+
 
 Task("Clean")
   .Does(() => { })
